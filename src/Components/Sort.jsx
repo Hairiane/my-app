@@ -1,4 +1,15 @@
+import React from 'react'
+
 function Sort() {
+const [isActive,setIsActive] = React.useState(false)
+const Word = ['популярности','цене','алфавиту']
+const [wordActive,setWordActive] = React.useState(Word[0])
+
+const setNewWordActive = (word) => {
+    setWordActive(word)
+    setIsActive(false)
+}
+
     return (
       <div className="sort">
         <div className="sort__label">
@@ -15,15 +26,16 @@ function Sort() {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span>популярности</span>
+          <span onClick={() => setIsActive(!isActive)}>{wordActive}</span>
         </div>
-        <div className="sort__popup">
+        {isActive && (
+            <div className="sort__popup">
           <ul>
-            <li className="active">популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li>
+            {Word.map((value,i)=> (
+                <li key={i} onClick={() => setNewWordActive(value)} className={wordActive === value ? 'active' : ''}>{value}</li>
+            ))}
           </ul>
-        </div>
+        </div>)}
       </div>
     );
   }

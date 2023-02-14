@@ -8,7 +8,7 @@ function Categories() {
   return (
     <div className="categories">
       <ul>
-      {categoriesPizza.map((value,i) => <li onClick={() => setActiveIndex(i)} className={activeIndex === i ? "active" : ""}>{value}</li>
+      {categoriesPizza.map((value,i) => <li key={i} onClick={() => setActiveIndex(i)} className={activeIndex === i ? "active" : ""}>{value}</li>
       )}
       </ul>
     </div>

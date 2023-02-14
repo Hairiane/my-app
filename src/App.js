@@ -1,11 +1,10 @@
-import logo from "./logo.svg";
 import "./App.css";
 import "./scss/app.scss";
 
 import Header from "./Components/Header";
 import Categories from "./Components/Categories";
 import Sort from "./Components/Sort";
-import PizzaBlock from "./Components/Pizza";
+import PizzaBlock from "./Components/PizzaBlock";
 import PizzasDb from "./assets/pizzas.json";
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
             {PizzasDb.map((obj) => (
-              <PizzaBlock {...obj} />
+              <PizzaBlock key={obj.id} {...obj} />
             ))}
           </div>
         </div>
