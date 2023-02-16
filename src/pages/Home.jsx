@@ -15,6 +15,7 @@ React.useEffect(() => {
         setIsLoading(false);
         setItems(arr);
     });
+    window.scrollTo(0,0)
 }, []);
 
 return (
