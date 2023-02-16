@@ -3,7 +3,6 @@ import React from "react"
 function PizzaBlock({price,name,imageUrl,sizes,types}) {
     const [activeIndexSizes, setActiveIndexSizes] = React.useState(0)
     const [activeIndexTypes, setActiveIndexTypes] = React.useState(0)
-
     return(
         <div className="pizza-block">
         <img

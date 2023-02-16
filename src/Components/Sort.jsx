@@ -1,9 +1,8 @@
 import React from 'react'
 
-function Sort() {
+function Sort({wordActive,setWordActive}) {
 const [isActive,setIsActive] = React.useState(false)
 const Word = ['популярности','цене','алфавиту']
-const [wordActive,setWordActive] = React.useState(Word[0])
 
 const setNewWordActive = (word) => {
     setWordActive(word)
