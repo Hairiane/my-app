@@ -3,25 +3,25 @@ import Categories from "../Components/Categories";
 import Sort from "../Components/Sort";
 import PizzaBlock from "../Components/PizzaBlock";
 import Skeleton from "../assets/Skeleton";
-import ThemeContext from '../Components/Categories'
+import Paginator from "../Components/Paginator";
 
-
-const Home = () => {
+const Home = ({SearchValue}) => {
 const [activeIndex, setActiveIndex] = React.useState(0)
 const [items, setItems] = React.useState([]);
 const [isLoading, setIsLoading] = React.useState(true);
 const [wordActive,setWordActive] = React.useState('популярности')
+const [selectedPage,setSelectedPage] = React.useState(1)
 
 React.useEffect(() => {
     setIsLoading(true);
-    fetch(`https://63e0cd60dd7041cafb39738c.mockapi.io/items?${!activeIndex ? '' : `category=${activeIndex}`}&${wordActive === 'популярности' ? 'sortBy=rating' : wordActive === 'цене' ? 'sortBy=price' : 'sortBy=name'}&order=desc `)
+    fetch(`https://63e0cd60dd7041cafb39738c.mockapi.io/items?${`page=${selectedPage}`}&limit=4&}${`search = ${SearchValue}`}${!activeIndex ? '' : `category=${activeIndex}`}&${wordActive === 'популярности' ? 'sortBy=rating' : wordActive === 'цене' ? 'sortBy=price' : 'sortBy=name'}&order=desc `)
     .then((res) => res.json())
     .then((arr) => {
         setIsLoading(false);
         setItems(arr);
     });
     window.scrollTo(0,0)
-}, [activeIndex,wordActive]);
+}, [activeIndex,wordActive,SearchValue,selectedPage]);
 
 return (
     <div className="container">
@@ -33,8 +33,15 @@ return (
     <div className="content__items">
         {isLoading
         ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-        : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
+        : items.filter((obj) => 
+        // console.log(obj,SearchValue.toLowerCase())
+       ( 
+        obj.name.toLowerCase()
+        .includes(SearchValue.toLowerCase())
+        )
+        ).map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
     </div>
+    <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
     </div>
 );
 };

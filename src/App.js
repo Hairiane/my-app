@@ -9,12 +9,14 @@ import NotFound from "./pages/NotFound";
 import Cart from "./pages/Cart";
 
 function App() {
+  const [SearchValue, SetSearchValue] = React.useState("");
+
   return (
     <div className="wrapper">
-      <Header />
+      <Header SearchValue={SearchValue} SetSearchValue={SetSearchValue} />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home SearchValue={SearchValue} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
