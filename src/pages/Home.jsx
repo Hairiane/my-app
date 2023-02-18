@@ -4,8 +4,10 @@ import Sort from "../Components/Sort";
 import PizzaBlock from "../Components/PizzaBlock";
 import Skeleton from "../assets/Skeleton";
 import Paginator from "../Components/Paginator";
+import { MyContext } from "../App";
 
-const Home = ({SearchValue}) => {
+const Home = () => {
+const {SearchValue} = React.useContext(MyContext)
 const [activeIndex, setActiveIndex] = React.useState(0)
 const [items, setItems] = React.useState([]);
 const [isLoading, setIsLoading] = React.useState(true);
