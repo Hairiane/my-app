@@ -5,38 +5,40 @@ import PizzaBlock from "../Components/PizzaBlock";
 import Skeleton from "../assets/Skeleton";
 import Paginator from "../Components/Paginator";
 import { MyContext } from "../App";
+import { useSelector, useDispatch } from 'react-redux'
+import { setIsLoading, setActiveIndex,setWordActive } from '../redux/filter/filter'
 
 const Home = () => {
+const isLoading = useSelector((state) => state.filter.isLoading)
+const activeIndex = useSelector((state) => state.filter.activeIndex)
+const wordActive= useSelector((state) => state.filter.wordActive)
+const dispatch = useDispatch()
 const {SearchValue} = React.useContext(MyContext)
-const [activeIndex, setActiveIndex] = React.useState(0)
 const [items, setItems] = React.useState([]);
-const [isLoading, setIsLoading] = React.useState(true);
-const [wordActive,setWordActive] = React.useState('популярности')
 const [selectedPage,setSelectedPage] = React.useState(1)
 
 React.useEffect(() => {
-    setIsLoading(true);
-    fetch(`https://63e0cd60dd7041cafb39738c.mockapi.io/items?${`page=${selectedPage}`}&limit=4&}${`search = ${SearchValue}`}${!activeIndex ? '' : `category=${activeIndex}`}&${wordActive === 'популярности' ? 'sortBy=rating' : wordActive === 'цене' ? 'sortBy=price' : 'sortBy=name'}&order=desc `)
+    dispatch(setIsLoading(true))
+    fetch(`https://63e0cd60dd7041cafb39738c.mockapi.io/items?${!activeIndex ? '' : `category=${activeIndex}&`}${`page=${selectedPage}`}&limit=4&}${`search = ${SearchValue}`}&${wordActive === 'популярности' ? 'sortBy=rating' : wordActive === 'цене' ? 'sortBy=price' : 'sortBy=name'}&order=desc `)
     .then((res) => res.json())
     .then((arr) => {
-        setIsLoading(false);
         setItems(arr);
+        dispatch(setIsLoading(false))
     });
     window.scrollTo(0,0)
-}, [activeIndex,wordActive,SearchValue,selectedPage]);
+}, [activeIndex, wordActive, SearchValue, selectedPage, dispatch]);
 
-return (
+    return (
     <div className="container">
     <div className="content__top">
-        <Categories value={activeIndex} setActiveIndex={(i) => setActiveIndex(i)}/>
-        <Sort wordActive={wordActive} setWordActive={(i) => setWordActive(i)}/>
+        <Categories value={activeIndex} setActiveIndex={(i) => dispatch(setActiveIndex(i))}/>
+        <Sort wordActive={wordActive} setWordActive={(i) => dispatch(setWordActive(i))}/>
     </div>
     <h2 className="content__title">Все пиццы</h2>
     <div className="content__items">
         {isLoading
         ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
         : items.filter((obj) => 
-        // console.log(obj,SearchValue.toLowerCase())
        ( 
         obj.name.toLowerCase()
         .includes(SearchValue.toLowerCase())

@@ -3,7 +3,6 @@ import React from 'react'
 export const ThemeContext = React.createContext(0);
 
 function Categories({value,setActiveIndex}) {
-  
   const categoriesPizza= ['Все','Мясные','Вегетарианская','Гриль','Острые','Закрытые']
 
   return (

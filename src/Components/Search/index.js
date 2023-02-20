@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./Search.module.scss";
 
 const Search = ({ SearchValue, SetSearchValue }) => {
-  console.log(SearchValue);
   return (
     <div className={styles.root}>
       <svg
