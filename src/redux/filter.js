@@ -5,6 +5,7 @@ const initialState = {
   isLoading: true,
   activeIndex: 0,
   wordActive: "популярности",
+  selectedPage: 1,
 };
 
 export const filterSlice = createSlice({
@@ -20,10 +21,13 @@ export const filterSlice = createSlice({
     setWordActive: (state, action) => {
       state.wordActive = action.payload;
     },
+    setSelectedPage: (state, action) => {
+      state.selectedPage = action.payload;
+    },
   },
 });
 
-export const { setIsLoading, setActiveIndex, setWordActive } =
+export const { setIsLoading, setActiveIndex, setWordActive, setSelectedPage } =
   filterSlice.actions;
 
 export default filterSlice.reducer;
