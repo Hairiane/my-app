@@ -2,10 +2,10 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import styles from "./Paginator.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { setSelectedPage } from "../../redux/filter";
+import { setSelectedPage } from "../../redux/Filter/filterSlice";
 
 const Paginator = () => {
-  const selectedPage = useSelector((state) => state.filter.selectedPage);
+  const selectedPage = useSelector((state: any) => state.filter.selectedPage);
   const dispatch = useDispatch();
   return (
     <>
@@ -18,7 +18,6 @@ const Paginator = () => {
         pageRangeDisplayed={4}
         pageCount={3}
         forcePage={selectedPage - 1}
-        renderOnZeroPageCount={null}
       />
     </>
   );

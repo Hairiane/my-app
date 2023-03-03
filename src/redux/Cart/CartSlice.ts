@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getCartFromLS } from "../../utils/getCartFromLS";
+import { CartSliceState } from "./types";
 
-const initialState = {
-  items: [],
-  totalPrice: 0,
-  count: 0,
-};
+const initialState: CartSliceState = getCartFromLS();
 
 export const CardSlice = createSlice({
   name: "Card",
@@ -41,13 +39,22 @@ export const CardSlice = createSlice({
       state.items = [];
       state.totalPrice = 0;
     },
-    setSelectedPage: (state, action) => {
-      state.selectedPage = action.payload;
-    },
+    // setSelectedPage: (state, action) => {
+    //   state.selectedPage = action.payload;
+    // },
+    // SetSearchValue: (state, action) => {
+    //   state.SearchValue = action.payload;
+    // },
   },
 });
 
-export const { addItem, minusItem, removeItems, removeAllItems } =
-  CardSlice.actions;
+export const {
+  addItem,
+  minusItem,
+  removeItems,
+  removeAllItems,
+  // setSelectedPage
+  // SetSearchValue,
+} = CardSlice.actions;
 
 export default CardSlice.reducer;

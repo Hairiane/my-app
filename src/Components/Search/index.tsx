@@ -3,22 +3,27 @@ import debounce from "lodash.debounce";
 
 import styles from "./Search.module.scss";
 
-const Search = ({ SearchValue, SetSearchValue }) => {
-  const [valueTime, setValueTime] = React.useState(SearchValue);
-  const InputRef = React.useRef();
+type PropsType = {
+  SearchValue: string;
+  SetSearchValue: (a: string) => void;
+};
 
-  const ClearInput = (event) => {
+const Search: React.FC<PropsType> = ({ SearchValue, SetSearchValue }) => {
+  const [valueTime, setValueTime] = React.useState(SearchValue);
+  const InputRef = React.useRef<HTMLInputElement>(null);
+
+  const ClearInput = (event: any) => {
     SetSearchValue("");
-    InputRef.current.focus();
+    InputRef.current?.focus();
   };
 
-  const updateValueTime = (event) => {
+  const updateValueTime = (event: any) => {
     setValueTime(event.target.value);
     updateValue(valueTime);
   };
 
   const updateValue = React.useCallback(
-    debounce((value) => {
+    debounce((value: string) => {
       SetSearchValue(value);
     }, 400),
     []

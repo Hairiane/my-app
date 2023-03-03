@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { FilterSliceState } from "./types";
 
-const initialState = {
+const initialState: FilterSliceState = {
   value: 0,
   isLoading: true,
   activeIndex: 0,
