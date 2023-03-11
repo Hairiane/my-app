@@ -8,6 +8,7 @@ type PropsType = {
 let Sort: React.FC<PropsType> = ({ wordActive, setWordActive }) => {
   const [isActive, setIsActive] = React.useState(false);
   const Word = ["популярности", "цене", "алфавиту"];
+  const WordEng = ["rating", "price", "name"];
 
   const setNewWordActive = (word: string) => {
     setWordActive(word);
@@ -30,7 +31,9 @@ let Sort: React.FC<PropsType> = ({ wordActive, setWordActive }) => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setIsActive(!isActive)}>{wordActive}</span>
+        <span onClick={() => setIsActive(!isActive)}>
+          {WordEng.map((value, i) => (wordActive === value ? Word[i] : ""))}
+        </span>
       </div>
       {isActive && (
         <div className="sort__popup">
@@ -38,7 +41,7 @@ let Sort: React.FC<PropsType> = ({ wordActive, setWordActive }) => {
             {Word.map((value, i) => (
               <li
                 key={i}
-                onClick={() => setNewWordActive(value)}
+                onClick={() => setNewWordActive(WordEng[i])}
                 className={wordActive === value ? "active" : ""}
               >
                 {value}

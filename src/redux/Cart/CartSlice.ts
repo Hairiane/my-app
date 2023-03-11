@@ -35,16 +35,16 @@ export const CardSlice = createSlice({
     removeItems: (state, action) => {
       state.items = state.items.filter((obj) => obj.id !== action.payload);
     },
-    removeAllItems: (state, action) => {
+    removeAllItems: (state) => {
       state.items = [];
       state.totalPrice = 0;
     },
     // setSelectedPage: (state, action) => {
     //   state.selectedPage = action.payload;
     // },
-    // SetSearchValue: (state, action) => {
-    //   state.SearchValue = action.payload;
-    // },
+    SetSearchValue: (state, action) => {
+      state.SearchValue = action.payload;
+    },
   },
 });
 
@@ -54,7 +54,7 @@ export const {
   removeItems,
   removeAllItems,
   // setSelectedPage
-  // SetSearchValue,
+  SetSearchValue,
 } = CardSlice.actions;
 
 export default CardSlice.reducer;

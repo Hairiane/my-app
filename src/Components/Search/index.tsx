@@ -2,29 +2,32 @@ import React from "react";
 import debounce from "lodash.debounce";
 
 import styles from "./Search.module.scss";
+import { SetSearchValue } from "../../redux/Cart/CartSlice";
+import { useDispatch } from "react-redux";
 
 type PropsType = {
   SearchValue: string;
-  SetSearchValue: (a: string) => void;
 };
 
-const Search: React.FC<PropsType> = ({ SearchValue, SetSearchValue }) => {
+const Search: React.FC<PropsType> = ({ SearchValue }) => {
   const [valueTime, setValueTime] = React.useState(SearchValue);
   const InputRef = React.useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
 
-  const ClearInput = (event: any) => {
-    SetSearchValue("");
+  const ClearInput = (event: React.MouseEvent<SVGSVGElement>) => {
+    dispatch(SetSearchValue(""));
+    setValueTime("");
     InputRef.current?.focus();
   };
 
-  const updateValueTime = (event: any) => {
+  const updateValueTime = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValueTime(event.target.value);
     updateValue(valueTime);
   };
 
   const updateValue = React.useCallback(
     debounce((value: string) => {
-      SetSearchValue(value);
+      dispatch(SetSearchValue(value));
     }, 400),
     []
   );

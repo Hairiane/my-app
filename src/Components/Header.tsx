@@ -2,14 +2,12 @@ import React from "react";
 import logoSvg from "../assets/img/pizza-logo.svg";
 import { Link } from "react-router-dom";
 import Search from "./Search";
-import { useSelector, useDispatch } from "react-redux";
-import { SetSearchValue } from "../redux/Cart/CartSlice";
+import { useSelector } from "react-redux";
 
 function Header() {
   const { items, totalPrice, SearchValue } = useSelector(
     (state: any) => state.cart
   );
-  const dispatch = useDispatch();
   const totalCount = items.reduce(
     (sum: number, item: any) => sum + item.count,
     0
@@ -27,10 +25,7 @@ function Header() {
             </div>
           </div>
         </Link>
-        <Search
-          SearchValue={SearchValue}
-          SetSearchValue={dispatch(SetSearchValue)}
-        />
+        <Search SearchValue={SearchValue} />
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
             <span>{totalPrice} ₽</span>

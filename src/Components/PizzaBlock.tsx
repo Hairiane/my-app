@@ -57,7 +57,7 @@ let PizzaBlock: React.FC<PropsType> = ({
           ))}
         </ul>
         <ul>
-          {sizes.map((value: any, i: number) => (
+          {sizes.map((value: number, i: number) => (
             <li
               key={i}
               onClick={() => setActiveIndexSizes(i)}

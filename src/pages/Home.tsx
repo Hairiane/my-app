@@ -4,19 +4,20 @@ import Sort from "../Components/Sort";
 import PizzaBlock from "../Components/PizzaBlock";
 import Skeleton from "../assets/Skeleton";
 import Paginator from "../Components/Paginator";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { setActiveIndex, setWordActive } from "../redux/Filter/filterSlice";
-import { fetchPizzas, selectPizzaData } from "../redux/Pizza/PizzaSlice";
+import { selectPizzaData } from "../redux/Pizza/PizzaSlice";
+import { fetchPizzas } from "../redux/Pizza/asyncAction";
+import { useAppDispatch } from "../redux/store";
 
-const Home = () => {
+const Home: React.FC = () => {
   const { activeIndex, wordActive, selectedPage } = useSelector(
     (state: any) => state.filter
   );
   const { SearchValue } = useSelector((state: any) => state.cart);
   const { status, items } = useSelector(selectPizzaData);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getPizzas = async () => {
     dispatch(
       fetchPizzas({
@@ -24,13 +25,14 @@ const Home = () => {
         selectedPage,
         SearchValue,
         wordActive,
+        sortBy: wordActive,
       })
     );
   };
 
   React.useEffect(() => {
     getPizzas();
-  }, [activeIndex, wordActive, SearchValue, selectedPage, dispatch, getPizzas]);
+  }, [activeIndex, wordActive, SearchValue, selectedPage]);
 
   return (
     <div className="container">

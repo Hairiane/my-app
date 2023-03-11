@@ -3,7 +3,7 @@ import React from "react";
 export const ThemeContext = React.createContext(0);
 
 type PropsType = {
-  value: any;
+  value: number;
   setActiveIndex: (i: number) => void;
 };
 
