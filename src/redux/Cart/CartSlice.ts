@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCartFromLS } from "../../utils/getCartFromLS";
-import { CartSliceState } from "./types";
+import { CartItem, CartSliceState } from "./types";
 
 const initialState: CartSliceState = getCartFromLS();
+
+const CountPrice = (state: CartSliceState) => {
+  state.totalPrice = state.items.reduce((sum: number, obj: CartItem) => {
+    return obj.price * obj.count + sum;
+  }, 0);
+};
 
 export const CardSlice = createSlice({
   name: "Card",
@@ -10,7 +16,6 @@ export const CardSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
-
       if (findItem) {
         findItem.count++;
       } else {
@@ -19,29 +24,23 @@ export const CardSlice = createSlice({
           count: 1,
         });
       }
-
-      state.totalPrice = state.items.reduce((sum, obj) => {
-        return obj.price * obj.count + sum;
-      }, 0);
+      CountPrice(state);
     },
     minusItem: (state, action) => {
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
-
       if (findItem) {
         findItem.count--;
-        console.log(action.payload);
       }
+      CountPrice(state);
     },
     removeItems: (state, action) => {
       state.items = state.items.filter((obj) => obj.id !== action.payload);
+      CountPrice(state);
     },
     removeAllItems: (state) => {
       state.items = [];
       state.totalPrice = 0;
     },
-    // setSelectedPage: (state, action) => {
-    //   state.selectedPage = action.payload;
-    // },
     SetSearchValue: (state, action) => {
       state.SearchValue = action.payload;
     },
@@ -53,7 +52,6 @@ export const {
   minusItem,
   removeItems,
   removeAllItems,
-  // setSelectedPage
   SetSearchValue,
 } = CardSlice.actions;
 

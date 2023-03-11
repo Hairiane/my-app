@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CartItem from "../Components/CartItem";
 import { useSelector, useDispatch } from "react-redux";
 import { removeAllItems } from "../redux/Cart/CartSlice";
 import CartEmpty from "../Components/CartEmpty";
 import { RootState } from "../redux/store";
+import CartAllItem from "../Components/CartItem";
+import { CartItem } from "../redux/Cart/types";
 
 export const Cart = () => {
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
@@ -102,8 +103,8 @@ export const Cart = () => {
             </div>
           </div>
           <div className="content__items">
-            {items.map((obj: any, id: number) => (
-              <CartItem key={id} {...obj} />
+            {items.map((obj: CartItem, id: number) => (
+              <CartAllItem key={id} {...obj} />
             ))}
           </div>
           <div className="cart__bottom">

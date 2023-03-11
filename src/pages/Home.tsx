@@ -30,21 +30,25 @@ const Home: React.FC = () => {
       })
     );
   };
-
   React.useEffect(() => {
     getPizzas();
   }, [activeIndex, wordActive, SearchValue, selectedPage]);
-
   return (
     <div className="container">
       <div className="content__top">
         <Categories
           value={activeIndex}
-          setActiveIndex={(i) => dispatch(setActiveIndex(i))}
+          setActiveIndex={React.useCallback(
+            (i) => dispatch(setActiveIndex(i)),
+            [dispatch]
+          )}
         />
         <Sort
           wordActive={wordActive}
-          setWordActive={(i) => dispatch(setWordActive(i))}
+          setWordActive={React.useCallback(
+            (i) => dispatch(setWordActive(i)),
+            [dispatch]
+          )}
         />
       </div>
       <h2 className="content__title">Все пиццы</h2>

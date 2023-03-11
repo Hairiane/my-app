@@ -17,7 +17,7 @@ export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
             category: activeIndex,
             page: selectedPage,
             limit: 4,
-            SearchValue,
+            search: SearchValue,
             sortBy: wordActive,
           },
           identity

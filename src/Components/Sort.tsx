@@ -5,18 +5,34 @@ type PropsType = {
   setWordActive: (word: string) => void;
 };
 
-let Sort: React.FC<PropsType> = ({ wordActive, setWordActive }) => {
+type PopupClick = MouseEvent & {
+  path: Node[];
+};
+
+let Sort: React.FC<PropsType> = React.memo(({ wordActive, setWordActive }) => {
   const [isActive, setIsActive] = React.useState(false);
   const Word = ["популярности", "цене", "алфавиту"];
   const WordEng = ["rating", "price", "name"];
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
   const setNewWordActive = (word: string) => {
     setWordActive(word);
     setIsActive(false);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as PopupClick;
+      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
+        setIsActive(false);
+      }
+    };
+    document.body.addEventListener("click", handleClickOutside);
+    return () => document.body.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -52,6 +68,6 @@ let Sort: React.FC<PropsType> = ({ wordActive, setWordActive }) => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;

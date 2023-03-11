@@ -3,13 +3,11 @@ import debounce from "lodash.debounce";
 
 import styles from "./Search.module.scss";
 import { SetSearchValue } from "../../redux/Cart/CartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
-type PropsType = {
-  SearchValue: string;
-};
-
-const Search: React.FC<PropsType> = ({ SearchValue }) => {
+const Search: React.FC = () => {
+  const { SearchValue } = useSelector((state: RootState) => state.cart);
   const [valueTime, setValueTime] = React.useState(SearchValue);
   const InputRef = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
@@ -22,7 +20,7 @@ const Search: React.FC<PropsType> = ({ SearchValue }) => {
 
   const updateValueTime = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValueTime(event.target.value);
-    updateValue(valueTime);
+    updateValue(event.target.value);
   };
 
   const updateValue = React.useCallback(

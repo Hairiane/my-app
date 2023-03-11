@@ -19,7 +19,7 @@ const Paginator = () => {
         previousLabel="<"
         onPageChange={(event) => dispatch(setSelectedPage(event.selected + 1))}
         pageRangeDisplayed={4}
-        pageCount={5}
+        pageCount={3}
         forcePage={selectedPage - 1}
       />
     </>
