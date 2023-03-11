@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem, minusItem, removeItems } from "../redux/Cart/CartSlice";
 
-type PropsType = {
-  id: number;
+export type PropsTypInCartItems = {
+  id: string;
   name: string;
   imageUrl: string;
   price: number;
@@ -12,7 +12,7 @@ type PropsType = {
   count: number;
 };
 
-let CartItem: React.FC<PropsType> = ({
+let CartItem: React.FC<PropsTypInCartItems> = ({
   id,
   name,
   imageUrl,
@@ -23,7 +23,7 @@ let CartItem: React.FC<PropsType> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const removeItem = (id: number) => {
+  const removeItem = (id: string) => {
     if (window.confirm("Вы уверены что хотите удалить эту пиццу?")) {
       dispatch(removeItems(id));
     }

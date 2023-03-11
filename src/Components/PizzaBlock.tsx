@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem } from "../redux/Cart/CartSlice";
+import { RootState } from "../redux/store";
 
 type PropsType = {
-  id: number;
+  id: string;
   price: number;
   name: string;
   imageUrl: string;
@@ -20,8 +21,8 @@ let PizzaBlock: React.FC<PropsType> = ({
   types,
 }) => {
   const dispatch = useDispatch();
-  const cartCount = useSelector((state: any) =>
-    state.cart.items.find((obj: any) => obj.id === id)
+  const cartCount = useSelector((state: RootState) =>
+    state.cart.items.find((obj: { id: string }) => obj.id === id)
   );
 
   const addedCount = cartCount ? cartCount.count : 0;

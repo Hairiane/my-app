@@ -8,13 +8,14 @@ import { useSelector } from "react-redux";
 import { setActiveIndex, setWordActive } from "../redux/Filter/filterSlice";
 import { selectPizzaData } from "../redux/Pizza/PizzaSlice";
 import { fetchPizzas } from "../redux/Pizza/asyncAction";
-import { useAppDispatch } from "../redux/store";
+import { RootState, useAppDispatch } from "../redux/store";
+import { Pizza } from "../redux/Pizza/types";
 
 const Home: React.FC = () => {
   const { activeIndex, wordActive, selectedPage } = useSelector(
-    (state: any) => state.filter
+    (state: RootState) => state.filter
   );
-  const { SearchValue } = useSelector((state: any) => state.cart);
+  const { SearchValue } = useSelector((state: RootState) => state.cart);
   const { status, items } = useSelector(selectPizzaData);
   const dispatch = useAppDispatch();
 
@@ -51,10 +52,10 @@ const Home: React.FC = () => {
         {status === "loading"
           ? [...new Array(4)].map((_, index) => <Skeleton key={index} />)
           : items
-              .filter((obj: any) =>
+              .filter((obj: Pizza) =>
                 obj.name.toLowerCase().includes(SearchValue.toLowerCase())
               )
-              .map((obj: any) => <PizzaBlock key={obj.id} {...obj} />)}
+              .map((obj: Pizza) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
       <Paginator />
     </div>

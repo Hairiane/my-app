@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PizzaSliceState, Status } from "./types";
 import { fetchPizzas } from "./asyncAction";
+import { RootState } from "../store";
 
 const initialState: PizzaSliceState = {
   items: [],
@@ -32,7 +33,7 @@ const pizzaSlice = createSlice({
   },
 });
 
-export const selectPizzaData = (state: any) => state.pizza;
+export const selectPizzaData = (state: RootState) => state.pizza;
 
 export const { setItems } = pizzaSlice.actions;
 

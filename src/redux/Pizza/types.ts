@@ -1,6 +1,6 @@
 export type Pizza = {
   id: string;
-  title: string;
+  name: string;
   price: number;
   imageUrl: string;
   sizes: number[];
@@ -20,7 +20,7 @@ export type SearchPizzaParams = {
   activeIndex: number;
   wordActive: string;
   SearchValue: string;
-  selectedPage: string;
+  selectedPage: number;
 };
 
 export interface PizzaSliceState {
