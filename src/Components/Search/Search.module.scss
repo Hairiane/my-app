@@ -1,6 +1,21 @@
 .root {
     position: relative;
-    left: -120px;
+
+    @media (max-width: 832px) {
+      flex-direction: column;
+
+      // .input {
+      //   width: auto;
+      // }
+    }
+
+    @media (max-width: 506px) {
+      flex-direction: column;
+
+      .input {
+        width: 254px;
+      }
+    }
   }
   
   .input {

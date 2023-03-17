@@ -61,4 +61,13 @@
     line-height: 27px;
     letter-spacing: 0.015em;
   }
+
+  @media (max-width: 375px) {
+    width: auto;
+    // padding: auto;
+  }
+  @media (max-width: 729px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

@@ -102,12 +102,22 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    @media (max-width: 375px) {
+      .content__title {
+        font-size: large;
+      }
+    }
   }
 
   .content__title {
     display: flex;
     align-items: center;
     font-size: 32px;
+
+    @media (max-width: 375px) {
+        font-size: large;
+    }
 
     svg {
       position: relative;
