@@ -5,8 +5,12 @@ import { Header } from "./Components/Header";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 
-const Cart = React.lazy(() => import("./pages/Cart"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
+const Cart = React.lazy(
+  () => import(/* webpackChunkName: "Cart"*/ "./pages/Cart")
+);
+const NotFound = React.lazy(
+  () => import(/* webpackChunkName: "NotFound"*/ "./pages/NotFound")
+);
 
 function App() {
   return (
