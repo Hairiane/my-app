@@ -1,11 +1,10 @@
-import React from "react";
 import ReactPaginate from "react-paginate";
 import styles from "./Paginator.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedPage } from "../../redux/Filter/filterSlice";
 import { RootState } from "../../redux/store";
 
-const Paginator = () => {
+export const Paginator = () => {
   const selectedPage = useSelector(
     (state: RootState) => state.filter.selectedPage
   );
@@ -25,5 +24,3 @@ const Paginator = () => {
     </>
   );
 };
-
-export default Paginator;

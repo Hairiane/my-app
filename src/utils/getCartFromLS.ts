@@ -1,4 +1,4 @@
-import { CartItem } from "../redux/Cart/types";
+import { CartItemType } from "../redux/Cart/types";
 import { calcTotalPrice } from "./calcTotalPrice";
 
 export const getCartFromLS = () => {
@@ -8,7 +8,7 @@ export const getCartFromLS = () => {
   const SearchValue = "";
 
   return {
-    items: items as CartItem[],
+    items: items as CartItemType[],
     totalPrice,
     SearchValue,
   };

@@ -7,7 +7,7 @@ type PropsType = {
   setActiveIndex: (i: number) => void;
 };
 
-let Categories: React.FC<PropsType> = React.memo(
+export const Categories: React.FC<PropsType> = React.memo(
   ({ value, setActiveIndex }) => {
     const categoriesPizza = [
       "Все",
@@ -34,5 +34,3 @@ let Categories: React.FC<PropsType> = React.memo(
     );
   }
 );
-
-export default Categories;

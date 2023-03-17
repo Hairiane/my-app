@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCartFromLS } from "../../utils/getCartFromLS";
-import { CartItem, CartSliceState } from "./types";
+import { CartItemType, CartSliceState } from "./types";
 
 const initialState: CartSliceState = getCartFromLS();
 
 const CountPrice = (state: CartSliceState) => {
-  state.totalPrice = state.items.reduce((sum: number, obj: CartItem) => {
+  state.totalPrice = state.items.reduce((sum: number, obj: CartItemType) => {
     return obj.price * obj.count + sum;
   }, 0);
 };

@@ -12,7 +12,7 @@ type PropsType = {
   types: number[];
 };
 
-let PizzaBlock: React.FC<PropsType> = ({
+export const PizzaBlock: React.FC<PropsType> = ({
   id,
   price,
   name,
@@ -94,5 +94,3 @@ let PizzaBlock: React.FC<PropsType> = ({
     </div>
   );
 };
-
-export default PizzaBlock;

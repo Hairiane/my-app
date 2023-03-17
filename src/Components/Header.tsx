@@ -9,7 +9,7 @@ interface itemCount {
   count: number;
 }
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
   const location = useLocation();
   const isMounted = React.useRef(false);
@@ -81,4 +81,3 @@ const Header: React.FC = () => {
     </div>
   );
 };
-export default Header;

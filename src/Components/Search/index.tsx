@@ -6,7 +6,7 @@ import { SetSearchValue } from "../../redux/Cart/CartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
-const Search: React.FC = () => {
+export const Search: React.FC = () => {
   const { SearchValue } = useSelector((state: RootState) => state.cart);
   const [valueTime, setValueTime] = React.useState(SearchValue);
   const InputRef = React.useRef<HTMLInputElement>(null);

@@ -13,7 +13,7 @@ export interface PropsTypInCartItems {
   count: number;
 }
 
-let CartAllItem: React.FC<PropsTypInCartItems> = ({
+export const CartItem: React.FC<PropsTypInCartItems> = ({
   id,
   name,
   imageUrl,
@@ -121,5 +121,3 @@ let CartAllItem: React.FC<PropsTypInCartItems> = ({
     </>
   );
 };
-
-export default CartAllItem;

@@ -1,9 +1,11 @@
 import React from "react";
-import Categories from "../Components/Categories";
-import Sort from "../Components/Sort";
-import PizzaBlock from "../Components/PizzaBlock";
-import Skeleton from "../assets/Skeleton";
-import Paginator from "../Components/Paginator";
+import {
+  Categories,
+  Sort,
+  PizzaBlock,
+  Skeleton,
+  Paginator,
+} from "../Components";
 import { useSelector } from "react-redux";
 import { setActiveIndex, setWordActive } from "../redux/Filter/filterSlice";
 import { selectPizzaData } from "../redux/Pizza/PizzaSlice";
