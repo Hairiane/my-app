@@ -21,20 +21,20 @@ const Home: React.FC = () => {
   const { status, items } = useSelector(selectPizzaData);
   const dispatch = useAppDispatch();
 
-  const getPizzas = async () => {
-    dispatch(
-      fetchPizzas({
-        activeIndex,
-        selectedPage,
-        SearchValue,
-        wordActive,
-        sortBy: wordActive,
-      })
-    );
-  };
   React.useEffect(() => {
+    const getPizzas = async () => {
+      dispatch(
+        fetchPizzas({
+          activeIndex,
+          selectedPage,
+          SearchValue,
+          wordActive,
+          sortBy: wordActive,
+        })
+      );
+    };
     getPizzas();
-  }, [activeIndex, wordActive, SearchValue, selectedPage]);
+  }, [activeIndex, wordActive, SearchValue, selectedPage, dispatch]);
   return (
     <div className="container">
       <div className="content__top">
