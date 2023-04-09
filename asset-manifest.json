@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/my-app/static/css/main.6eb0993b.css",
+    "main.css": "/my-app/static/css/main.b406217c.css",
     "main.js": "/my-app/static/js/main.ce9d832c.js",
     "Cart.js": "/my-app/static/js/Cart.8c4ec077.chunk.js",
     "NotFound.js": "/my-app/static/js/NotFound.2bbcc7c5.chunk.js",
@@ -8,14 +8,14 @@
     "static/media/empty-cart.png": "/my-app/static/media/empty-cart.db905d1f4b063162f25b.png",
     "static/media/pizza-logo.svg": "/my-app/static/media/pizza-logo.56ac87032d8f6fdf863326acd06c0d97.svg",
     "index.html": "/my-app/index.html",
-    "main.6eb0993b.css.map": "/my-app/static/css/main.6eb0993b.css.map",
+    "main.b406217c.css.map": "/my-app/static/css/main.b406217c.css.map",
     "main.ce9d832c.js.map": "/my-app/static/js/main.ce9d832c.js.map",
     "Cart.8c4ec077.chunk.js.map": "/my-app/static/js/Cart.8c4ec077.chunk.js.map",
     "NotFound.2bbcc7c5.chunk.js.map": "/my-app/static/js/NotFound.2bbcc7c5.chunk.js.map",
     "787.28cb0dcd.chunk.js.map": "/my-app/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6eb0993b.css",
+    "static/css/main.b406217c.css",
     "static/js/main.ce9d832c.js"
   ]
 }
